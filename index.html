@@ -5,24 +5,33 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- pada tag di atas merupakan fungsi untuk responsive yaitu pada tag "viewport"-->
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <!-- End Bootstrap CSS -->
+        <!-- untuk ccs nya menggunakan bawaan dari boostrap dengan css online-->
 
+        <!-- begin tittle -->
         <title>Selamat datang di web saya</title>
+        <!-- end tittle -->
     </head>
 
     <body>
         <!-- begin navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fs-5">
+            <!-- di sini kita menggunakan navbar dari boostrap dengan warna bacjground nya biru(primary) dan ada bayangan dengan ukuran text 5 (fs-5)-->
             <div class="container text-white">
+                <!-- untuk mengubah warna text pada navbar yaitu dengan menambahkan tag text-white pada class container sehingga text yang berada pada navbar akan berubah warna menjadi putih-->
                 <a class="navbar-brand">R</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                 aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
+                    <!-- saat web dijalankan di mobile, tag navbar-toggler-icon akan membuat navbar menjadi tombol icon garis horizontal 3 di pojok kanan atas-->
                 </button>
                 <div class="collapse navbar-collapse text-white" id="navbarNav">
+                    <!-- pada class ini akan membuat link untuk halaman index.html dan about.html pada ombol home, about sama contact-->
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
@@ -39,27 +48,37 @@
         </nav>
         <!-- end navbar -->
 
+        <!-- begin jumbotron-->
         <section class="jumbotron text-center text-dark mt-5">
             <img src="img/img.jpg" alt="Rezha" width="200" class="rounded-circle" />
+            <!-- agar img nya lingkaran tinggal manggil cls botstrap rounded circle dan img thumnail tambahan dekorasi -->
             <p class="display-5 fs-1 mt-3">Rezha Dwi Rendra Graha</p>
             <h2 class="display-6">Mahasiswa STMIK AKAKOM Yogyakarta
                 <br> Jurusan Teknik Informatika
             </h2>
         </section>
+        <!-- end jumbotron-->
 
+        <!-- galery-->
+        <!-- Pada gallery menggunakan grid system,agar grid berfungsi maka menggunakan class container, coloumn, dan row -->
         <section id="galery">
             <div class="container">
                 <div class="row text-center mb-4">
+                    <!-- Pada class row menggunakan text-center agar text berada pada posisi tengah dan margin bottom 4-->
                     <div class="col">
                         <h2>Gallery</h2>
                     </div>
                 </div>
-                <!-- hello -->
-                <!-- pada bagian ini mengguakan card dengan isi img dan img nya di rapatkan ke top untuk mengisi card body text -->
+                
+                
                 <div class="row justify-content-center">
+                    <!-- pada class row membuat posisi img menjadi posisi ke tengah -->
                     <div class="col-md-4 mb-3">
+                        <!-- pada class col menggunakan breakpoints yaitu col-md-4 yaitu coloumn berukuran medium 4 -->
                         <div class="card">
                             <img src="img/code1.svg" class="card-img-top" alt="" />
+                            <!-- untuk bagian ini mengguakan card dengan isi img dan img nya di rapatkan ke top untuk mengisi card body text -->
+                            <!-- pada format img menggunakan format .svg agar saat responsive img tetap baik/tidak pecah -->
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -75,12 +94,16 @@
                 </div>
             </div>
         </section>
+        <!-- end gallery-->
 
         <!-- Optional JavaScript; choose one of the two! -->
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
+        <!-- JS Boostrap -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <!-- end JS Boostrap-->
+        <!-- Untuk javascript juga menggunakan bawaan dari boostrap agar fungsi yang ada pada menu berjalan -->
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
         <!--
