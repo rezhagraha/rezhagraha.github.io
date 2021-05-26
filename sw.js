@@ -1,54 +1,72 @@
-const CACHE_NAME = "static_cache2"
-const STATIC_ASSETS = [
-    "/about.html",
-    "/index.html",
-    "/img/code1.svg",
-    "/img/code2.svg",
-    "/img/code3.svg",
-    "/img/img.jpg",
-    "/img/Instagram.svg",
-    "/img/twitter.svg",
-    "/img/whatsapp.svg"
+var CACHE_NAME = 'my-site-cache-v1';
+var urlsToCache = [
+  '/',
+  '/callback.json',
+  '/js/main.js',
+  '/index.html',
+  '/api.html',
+  '/about.html',
+  '/img/code1.svg',
+  '/img/code2.svg',
+  '/img/code3.svg',
+  '/img/img.jpg',
+  '/img/Instagram.svg',
+  '/img/twitter.svg',
+  '/img/whatsapp.svg'
+];
+
+self.addEventListener('install', function(event) {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(function(cache) {
+        console.log('in install serviceworker.... cache opened!');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+self.addEventListener('fetch', function(event) {
     
-]
+    var request = event.request
+    var url = new URL(request.url)
 
-async function preCache() {
-    const cache = await caches.open(CACHE_NAME)
-    return cache.addAll(STATIC_ASSETS)
-}
+    //pisahkan request API dan Internal
+    if(url.origin === location.origin) {
+    event.respondWith(
+        caches.match(request).then(function(response){
+            return response || fetch(request)
+        })
+    )
 
-self.addEventListener('install', event => {
-    console.log("[SW] installed");
-    event.waitUntil(preCache())
-})
+    }else{
+        event.respondWith(
+            caches.open('car-cache').then(function(cache){
+                return fetch(request).then(function(LiveResponse){
+                    cache.put(request, LiveResponse.clone())
+                    return LiveResponse
+                }).catch(function(){
+                    return caches.match(request).then(function(response){
+                        if(response) return response
+                        return caches.match('/callback.json')
+                    })
+                })
+            })
+        )
 
-async function cleanupCache(){
-    const keys = await caches.keys()
-    const keysToDelete = keys.map(key => {
-        if (key !== CACHE_NAME) {
-            return caches.delete(key)
-        }
-    })
-
-    return Promise.all(keysToDelete)
-}
-
-self.addEventListener('activate', event => {
-    console.log("[SW] activated");
-    event.waitUntil(cleanupCache())
-})
-
-async function fetchAssets(event){
-    try {
-        const response = await fetch(event.request)
-        return response
-    } catch (err){
-        const cache = await caches.open(CACHE_NAME)
-        return cache.match(event.request)
     }
-}
 
-self.addEventListener('fetch', event => {
-    console.log("[SW] fetched");
-    event.respondWith(fetchAssets(event))
-})
+  });
+
+  self.addEventListener('activate', function(event) {
+    event.waitUntil(
+      caches.keys().then(function(cacheNames) {
+        return Promise.all(
+          cacheNames.filter(function(cacheName) {
+              return cacheName != CACHE_NAME
+           }).map(function(cacheName) {
+              return caches.delete(cacheName);
+            })
+        );
+      })
+    );
+  });

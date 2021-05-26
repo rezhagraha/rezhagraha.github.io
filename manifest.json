@@ -1,12 +1,11 @@
 {
-    "theme_color": "#2316db",
-    "background_color": "#fdfcfb",
+    "theme_color": "#000000",
+    "background_color": "#d0021b",
     "display": "standalone",
     "scope": "/",
     "start_url": "/index.html",
-    "name": "Rezha",
-    "short_name": "aplikasiku",
-    "description": "ini web ku",
+    "name": "Aplikasiku",
+    "short_name": "RezhaDRG",
     "icons": [
         {
             "src": "/img/icon-192x192.png",
