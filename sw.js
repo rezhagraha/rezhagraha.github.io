@@ -1,4 +1,5 @@
 var CACHE_NAME = 'my-site-cache-v1';
+//Membuat variabel urlsToCache yaitu untuk menyimpan data/cache yang terdapat pada file"
 var urlsToCache = [
   '/',
   '/callback.json',
@@ -16,10 +17,10 @@ var urlsToCache = [
 ];
 
 self.addEventListener('install', function(event) {
-  // Perform install steps
+  // Langkah untuk penginstalan
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
-        console.log('in install serviceworker.... cache opened!');
+        console.log('Instalasi ServiceWorker..... cache terbuka!!!');
         return cache.addAll(urlsToCache);
       })
   );
@@ -60,7 +61,7 @@ self.addEventListener('fetch', function(event) {
   self.addEventListener('activate', function(event) {
     event.waitUntil(
       caches.keys().then(function(cacheNames) {
-        return Promise.all(
+        return Promise.all( //Menggunakan JS.Promise
           cacheNames.filter(function(cacheName) {
               return cacheName != CACHE_NAME
            }).map(function(cacheName) {

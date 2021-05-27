@@ -1,22 +1,25 @@
  $(document).ready(function(){
-
+    //Data Api yang saya buat melalui Github
     var _url = "https://my-json-server.typicode.com/rezhagraha/pwmapi/car"
 
+    //variabel untuk menyimpan array dari data API
     var dataResult = ''
     var carResult = ''
     var merks = []
-    
+
+    //start renderPage
+    //renderPage yaitu untuk proses akhir dalam membuka web tersebut agar data dapat tersimpan di cachce
     function renderPage(data){
         $.each(data, function(key, items) {
 
             _car = items.merk
 
-            dataResult += "<div>"
-                        + "<h3>" + _car + "</h3>"
-                        + "<p>" + items.model + "</p>"
-                        + "<p>" + items.year + "</p>"
-                        + "<hr />"
-            "<div>";
+            dataResult += "<div class='card card-body mb-3' style='width: 18rem;'>"
+                        + "<p> Nama Merk : " + _car + "</p>"
+                        + "<p> Nama Model : " + items.model + "</p>"
+                        + "<p> Tahun Rilis : " + items.year + "</p>"
+            +"</div>"
+            "<hr>";
 
             if($.inArray(_car, merks) == -1 ){
                 merks.push(_car)
@@ -28,6 +31,7 @@
         $('#car').html(dataResult)
         $('#car_select').html("<option value='all'>Semua</option>" + carResult)
     }
+    //End renderPage
 
     var networkDataReceived = false
 
@@ -71,12 +75,12 @@
     
                 _car = items.merk
     
-                dataResult += "<div>"
-                            + "<h3>" + _car + "</h3>"
-                            + "<p>" + items.model + "</p>"
-                            + "<p>" + items.year + "</p>"
-                            + "<hr />"
-                "<div>";
+                dataResult += "<div class='card card-body mb-3' style='width: 18rem;'>"
+                + "<p> Nama Merk : " + _car + "</p>"
+                + "<p> Nama Model : " + items.model + "</p>"
+                + "<p> Tahun Rilis : " + items.year + "</p>"
+                +"</div>"
+                "<hr>";
     
             })
     
@@ -91,9 +95,9 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js').then(function(registration) {
-            console.log('ServiceWorker register successful with scope: ', registration.scope);
+            console.log('Registrasi ServiceWorker sukses dengan Scope: ', registration.scope);
         }, function(err) {
-            console.log('ServiceWorker registration failed: ', err);
+            console.log('Registrasi ServiceWorker gagal: ', err);
         });
     });
 }
